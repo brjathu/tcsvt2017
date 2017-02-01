@@ -6,18 +6,18 @@ sports, health care, surveillance, robot vision, and human-computer interaction.
 Furthermore, the rapid growth of digital video data demands automatic
 classification and indexing of videos. Despite the increased interest, state-of-the-art
 systems are still far from human-level performance, in contrast to the success in image classification \cite{girshick2014rich, krizhevsky2012imagenet}. This is partially due to the complex intra-class variations in videos, some obvious causes being the view point, background
-clutter, high dimensionality of data, lack of large data sets, and low resolution.
+clutter, high dimensionality of data, lack of large datasets, and low resolution.
 
 Despite these reasons more-or-less affecting automatic image classification, it has been quite successful in recent years,
 largely owing to the rise of deep learning techniques. This is not the case in video classification, although deep learning is
 starting to be widely applied. Therefore, it is worthwhile investigating
-\hl{what is holding back video classification}. In this study, we address three key
+what is holding back video classification. In this study, we address three key
 areas: exploiting the underlying dynamics of sub-events for high-level action recognition, crafting
 self-explanatory, independent static and motion features---in which, motion features should capture micro-level actions
 of each actor or object independently, such as arm or leg movements---, and optimum fusing of static and motion features for better accuracy.
 %These three aspects are briefly explained next.
 
-A complex activity typically comprises several \hl{sub activities}.
+A complex activity typically comprises several sub activities.
 The existing approaches try to classify a video treating it as a
 single, high-level activity \cite{wang2011action, wang2013action, simonyan2014two, 7486474}.
 As the action becomes complex, the behavior and the
@@ -28,13 +28,13 @@ a higher-order temporal relationship among them. For example, turning on the coo
 may appear in reverse order in another video in the same class.
 Therefore, this temporal pattern of sub-events is not easy to capture through a simple
 time series analysis. These patterns can only be identified by observing a large number
-of examples, using a system which has an \hl{infinite dynamic response}. Therefore, it is important to
+of examples, using a system which has an infinite dynamic response. Therefore, it is important to
 model this higher-order temporal
 progression, and capture temporal dynamics of these sub-events for better recognition of
 complex activities.
 
 In contrast to image classification, the information contained in videos
-are not in a single \hl{domain}. Both the motion patterns of the actors and objects, as well as the static
+are not in a single domain. Both the motion patterns of the actors and objects, as well as the static
  information---such as, background and still objects that the actors interact with---are important for determining an action.
 For example, the body movements of a group of people fighting may closely relate to
 the body movements of a sports event, e.g., wrestling. In such a case, it is tough to distinguish between the two
@@ -48,7 +48,7 @@ and long durations, can be used to identify high level actions. In the proposed 
 
 Furthermore, how to optimally combine or fuse these motion and static descriptors remains a challenge for three key reasons: both static and motion information
 provide cues regarding an action in a video, the contribution ratio from each domain affects the final recognition accuracy,
-and optimum contribution ratio of static and motion information may depend on the data set.
+and optimum contribution ratio of static and motion information may depend on the richness of motion information in the video.
 The combined descriptor should contain the essence of both domains, and should not have a
 negative influence on each other. Recently, there has been attempts to answer this question \cite{7486474},\cite{simonyan2014two}. However,
 these existing methodologies lack the insight in to how much this ratio affects the final accuracy, and has no control over this ratio.
@@ -57,7 +57,7 @@ final descriptor, and have the ability to control level of contribution. This ab
 to deeply investigate the optimum contribution of each domain for a better accuracy. In this study, we investigate this factor
 extensively.
 
-In this work, we focus on video activity recognition using both static and motion information. We address three problem areas: crafting \hl{mutually exclusive} static and motion features, optimal fusion of the crafted features, and
+In this work, we focus on video activity recognition using both static and motion information. We address three problem areas: crafting mutually exclusive static and motion features, optimal fusion of the crafted features, and
 modeling temporal dynamics of sub-activities for high-level activity recognition. In order to examine the temporal evolution
 of sub-activities subsequently, we create video segments with constant overlapping durations. Afterwards, we combine static and motion
 descriptors to represent each segment. We propose \textit{motion tubes},
@@ -68,7 +68,7 @@ inside motion tubes. Then we apply a bag-of-words (BoW) method on the generated
 features to capture the distributional properties of micro actions, such as body movements, and create high level, discriminative motion features.
 
 Inspired by the power  of object recognition of convolutional neural networks (CNNs), we create a seven-layer deep
-CNN, and pre-train it on the popular ImageNet data set \cite{deng2012imagenet}.
+CNN, and pre-train it on the popular ImageNet dataset \cite{deng2012imagenet}.
 Afterwards, we use this trained CNN to create deep features, to synthesize static descriptors.
 Then, using a computationally efficient, yet powerful, mathematical model, we fuse static and motion feature vectors. We propose three such novel methods in this paper: based on
 Cholesky decomposition, variance ratio of motion and static vectors, and principal components analysis (PCA). The Choleskey decomposition based model provides the ability to
@@ -76,16 +76,16 @@ precisely control the contribution of static and motion domains to the final fus
 optimum contribution of each domain, experimentally.  The variance ratio based method also provides us this ability, and additionally, lets us
 obtain the optimum contribution ratio mathematically. We show that the optimum contribution ratio obtained experimentally using the Choleskey based method,
 matches with the ratio obtained mathematically from the variance based method. Furthermore, we show that this optimum contribution may
-vary depending on the data set, and affects the final accuracy significantly.
+vary depending on on the richness of motion information, and affects the final accuracy significantly.
 %The PCA-based method also provides good results.
 
 
 In order to model the temporal progression of sub events, we feed the fused vectors to
 a long short-term memory (LSTM) network. The LSTM network discovers the underlying temporal patterns of the sub events, and classifies high level actions.
 We feed the same vectors to a classifier which does not capture temporal dynamics to show that modeling temporal progression of sub events indeed contribute for a better
-accuracy. We carry out our experiments on the two popular action data sets, UCF-11 \cite{liu2009recognizing}
+accuracy. We carry out our experiments on the two popular action data ets, UCF-11 \cite{liu2009recognizing}
 and Hollywood2 \cite{marszalek2009actions}. Our results surpass existing  state-of-the-art
-results on these data sets, to the best of our knowledge.
+results on these datasets, to the best of our knowledge.
 
 The key contributions of this paper are as follows:
 
@@ -97,18 +97,18 @@ which enables the system to track each actor or object independently, and model 
 This allows the system to model actions occurring in a video in micro level, and use these learned dynamics
 at a high level afterwards.
  \item We propose three novel, simple, and an efficient mathematical models for fusing two vectors,
-in two different domains, based on Choleskey transformation, variance ratio of motion and static vectors, and PCA. \hl{The first two methods} provide
+in two different domains, based on Choleskey transformation, variance ratio of motion and static vectors, and PCA. The first two methods provide
 the ability to govern the contribution of each domain for the fused vector precisely and find the optimum contribution of the two domains, mathematically or empirically. Using this advantage, we prove that both static and motion information are complementary and vital for activity recognition through experiments.
 %Also, we show that the optimum contribution may vary depending on the data set, and affects the final accuracy significantly.
  \item We prove that the final recognition accuracy depends on the ratio of contribution of static and motion domains. Also we show that
- this optimum ratio depends on the data set. Hence, it is beneficial to exploit this optimum ratio for a better accuracy.
+ this optimum ratio depends on the richness of motion information in the video. Hence, it is beneficial to exploit this optimum ratio for a better accuracy.
   \item We model the underlying temporal evolution of sub-events for complex activity recognition using an LSTM network. We experimentally
 prove that capturing these dynamics indeed benefits the final accuracy.
  \end{itemize}
 
 With the proposed technique
 %, and novel techniques,
-we outperform the existing best results for the popular data sets UCF-11 \cite{liu2009recognizing}
+we outperform the existing best results for the popular datasets UCF-11 \cite{liu2009recognizing}
 and Hollywood2 \cite{marszalek2009actions}.
 
 
